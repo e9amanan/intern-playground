@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# 1. Argument validation
+if [[ $# -ne 3 ]]; then
+    echo "Error: expected 3 arguments, got $#" >&2
+    echo "Usage: $0 <source_dir> <archive_name> <retain_count>" >&2
+    exit 1
+fi
+
+TARGET_DIR="$1"
+ARCHIVE_NAME_PREFIX="$2"
+RETENTION_COUNT="$3"
+ARCHIVE_BASE_DIR="./archives"
+
+if [[ ! -d "$TARGET_DIR" ]]; then
+    echo "Error: source directory '$TARGET_DIR' does not exist" >&2
+    exit 1
+fi
+
+if ! [[ "$RETENTION_COUNT" =~ ^[0-9]+$ ]] || [[ "$RETENTION_COUNT" -lt 1 ]]; then
+    echo "Error: retain_count must be a positive integer, got '$RETENTION_COUNT'" >&2
+    exit 1
+fi
+
+# 2. Ensure the archives directory exists
+mkdir -p "$ARCHIVE_BASE_DIR"
+
+# 3. Create the backup file name with today's date
+TIMESTAMP=$(date +"%F")
+ARCHIVE_NAME="${ARCHIVE_NAME_PREFIX}-${TIMESTAMP}.tar.gz"
+DEST_ARCHIVE_PATH="${ARCHIVE_BASE_DIR}/${ARCHIVE_NAME}"
+
+# Guard against overwriting a backup made earlier today
+if [[ -e "$DEST_ARCHIVE_PATH" ]]; then
+    echo "Error: archive '$DEST_ARCHIVE_PATH' already exists" >&2
+    exit 1
+fi
+
+# 4. Create the compressed tar archive file
+PARENT_DIR="$(dirname "$TARGET_DIR")"
+LEAF_DIR="$(basename "$TARGET_DIR")"
+
+if ! tar -czf "$DEST_ARCHIVE_PATH" -C "$PARENT_DIR" "$LEAF_DIR"; then
+    echo "Error: failed to create archive" >&2
+    rm -f "$DEST_ARCHIVE_PATH"
+    exit 1
+fi
+
+# --- SUMMARY BLOCK ---
+echo "========================================="
+echo "         BACKUP PROCESS SUMMARY          "
+echo "========================================="
+echo "Target Directory : $TARGET_DIR"
+echo "Created Archive  : ${ARCHIVE_NAME}"
+echo "Saved To Path    : ${DEST_ARCHIVE_PATH}"
+echo "========================================="
