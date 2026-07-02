@@ -90,4 +90,38 @@ for value in employee.values():
 for key,value in employee.items():
     print(f"employees{key} is {value}")
 
+ 
+numbers = [1, 2, 3, 4]
+squares = {num: num * num for num in numbers}
+print(squares)
+
+#sets
+unique_numbers = {1, 2, 3, 3, 3, 4}
+print(unique_numbers)
+
+empty_set = set()
+
+allowed_users_list = ["alice", "bob", "charlie"]
+allowed_users_set = {"alice", "bob", "charlie"}
+
+user = "bob"
+if user in allowed_users_set:
+    print(f"{user} is allowed in!")
+
+
+frontend = {"Alice", "Bob", "Charlie"}
+backend = {"Charlie", "David", "Eve"}
+
+all_devs = frontend | backend
+print(all_devs)
+
+fullstack = frontend & backend
+print(fullstack)
+
+pure_frontend = frontend - backend
+print(pure_frontend)
+
+specialists = frontend ^ backend
+print(specialists)
+
 
