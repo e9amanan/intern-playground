@@ -1,3 +1,5 @@
+#string
+
 text="python"
 
 print(text[0:3])
@@ -54,9 +56,38 @@ nums.sort()
 print(nums)
 
 
+#tupple
 
 location=(40.7128,-74.0060)
 
 lat,lon = location
 print(f"latitutude of london is {lat}")
+
+from collections import namedtuple
+
+color=namedtuple("color", ["red","green","blue"])
+
+pure_red=color(red=255,green=0,blue=0)
+
+print(pure_red.red)
+
+#dictionaries
+
+employee={"name":"sarah","age":28,"department":"engineering"}
+
+employee["salary"]=9000
+employee["age"]=25
+
+location=employee.get("location")
+print(location)
+
+for key in employee.keys():
+    print(key)
+
+for value in employee.values():
+    print(value)
+
+for key,value in employee.items():
+    print(f"employees{key} is {value}")
+
 
