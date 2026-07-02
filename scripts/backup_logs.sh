@@ -2,15 +2,14 @@
 set -euo pipefail
 
 # 1. Argument validation
-if [[ $# -ne 3 ]]; then
-    echo "Error: expected 3 arguments, got $#" >&2
-    echo "Usage: $0 <source_dir> <archive_name> <retain_count>" >&2
+if [[ $# -ne 2 ]]; then
+    echo "Error: expected 2 arguments, got $#" >&2
+    echo "Usage: $0 <source_dir> <archive_name>" >&2
     exit 1
 fi
 
 TARGET_DIR="$1"
 ARCHIVE_NAME_PREFIX="$2"
-RETENTION_COUNT="$3"
 ARCHIVE_BASE_DIR="./archives"
 
 if [[ ! -d "$TARGET_DIR" ]]; then
@@ -18,10 +17,6 @@ if [[ ! -d "$TARGET_DIR" ]]; then
     exit 1
 fi
 
-if ! [[ "$RETENTION_COUNT" =~ ^[0-9]+$ ]] || [[ "$RETENTION_COUNT" -lt 1 ]]; then
-    echo "Error: retain_count must be a positive integer, got '$RETENTION_COUNT'" >&2
-    exit 1
-fi
 
 # 2. Ensure the archives directory exists
 mkdir -p "$ARCHIVE_BASE_DIR"
