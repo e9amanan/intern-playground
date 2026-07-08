@@ -7,9 +7,9 @@ def compute_daily_averages(rows,ts_col,value_col):
         val=float(row[value_col])
 
         totals[date] = totals.get(date,0.0) + val
-        counts[data] = counts.get(data,0)+1
+        count[date] = count.get(date,0)+1
 
-    return {date:totals[date]/counts[date]for date in total}
+    return {date:totals[date]/count[date]for date in totals}
 
 def find_spikes(rows, value_col,top):
     sorted_rows = sorted(rows,key=lambda x: float(x[value_col]),reverse = True)
