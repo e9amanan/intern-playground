@@ -21,6 +21,3 @@ def isValid(s: str) -> bool:
 
 print(isValid("()"))     
 print(isValid("()[]{}"))  
-print(isValid("(]"))      
-print(isValid("([)]"))    
-print(isValid("{[]}"))    
