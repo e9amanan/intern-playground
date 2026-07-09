@@ -1,3 +1,14 @@
+"""
+Create backup script
+
+    Create scripts/backup_logs.sh that:
+        Archives a given directory to ./archives/<name>-YYYY-MM-DD.tar.gz.
+        Keeps only the last N archives (argument), deletes older ones.
+        Prints a summary of created and deleted archives.
+    Make executable: chmod +x scripts/backup_logs.sh.
+    Use sample logs directory: intern_training/data/sample_logs/.
+
+"""
 #!/usr/bin/env bash
 set -euo pipefail
 

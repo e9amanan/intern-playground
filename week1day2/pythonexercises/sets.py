@@ -1,4 +1,10 @@
+"""
+practice of set in python
+"""
+
+
 def common_elements(list1: list, list2: list) -> set:
+
     return set(list1).intersection(set(list2))
 
 
