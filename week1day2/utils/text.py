@@ -20,7 +20,7 @@ def clean_text(s: str) -> str:
     return " ".join(words_list)
 
 
-def tokenizer(s: str, delimiter: str = " ") -> list[str]:
+def tokenize(s: str, delimiter: str = " ") -> list[str]:
     return s.split(delimiter)
 
 
