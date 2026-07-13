@@ -12,7 +12,7 @@ class ValidationError(Exception):
 
 def parse_arguments():
     parser=argparse.ArgumentParser(
-        description = "analyse hourly energy price data"
+        description = "analyse hourly energy price data",
         exit_on_error=False
     )
     parser.add_argument("--File", required=True,help="CSV file path(required)")
