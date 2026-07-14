@@ -77,7 +77,7 @@ def display_daily_averages(data):
 
 def display_top_spikes(data,top_n):
     sorted_data= sorted(data,key=lambda x: x["value"],reverse = True)
-    spikes = sorted-data[:top_n]
+    spikes = sorted_data[:top_n]
 
     print(f"top {top_n} price spikes: ")
     for spike in spikes:
