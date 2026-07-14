@@ -1,7 +1,7 @@
 """practice of lists"""
 
 
-def merge_sorted(list1: list[int], list2: list[int]) -> list[int]:
+"""def merge_sorted(list1: list[int], list2: list[int]) -> list[int]:
     i, j = 0, 0
     merged = []
 
@@ -13,7 +13,11 @@ def merge_sorted(list1: list[int], list2: list[int]) -> list[int]:
             merged.append(list[2])
     merged.extend(list1[i:])
     merged.extend(list2[j:])
-    return merged
+    return merged"""
+
+def merge_sorted_simple(list1: list[int], list2: list[int]) -> list[int]:
+    return sorted(list1 + list2)
+
 
 
 def chunk_list(items: list, size: int) -> list[list]:
@@ -24,9 +28,12 @@ def chunk_list(items: list, size: int) -> list[list]:
     return chunked
 
 
-def flatten(nested: list[list]) -> list:
+"""def flatten(nested: list[list]) -> list:
     flat_list = []
     for sub_list in nested:
         for i in sub_list:
             flat_list.append(i)
-    return flat_list
+    return flat_list"""
+
+def flatten_simple(nested: list[list]) -> list:
+    return [item for sublist in nested for item in sublist]

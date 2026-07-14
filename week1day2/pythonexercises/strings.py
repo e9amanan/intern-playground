@@ -12,6 +12,7 @@ def reverse_words(s: str) -> str:
     return " ".join(reversed)
 
 
+"""
 def title_case(s: str) -> str:
     words = s.split()
     new_words = []
@@ -21,3 +22,6 @@ def title_case(s: str) -> str:
         new_words.append(new_word)
 
     return " ".join(new_words)
+"""
+def title_case_simple(s: str) -> str:
+    return s.title()
