@@ -16,6 +16,7 @@ Function specs
 
 """
 
+from collections import defaultdict
 
 def frequencies(items: list[str]) -> dict[str, int]:
     freq_map: dict[str, int] = {}
@@ -26,11 +27,11 @@ def frequencies(items: list[str]) -> dict[str, int]:
     return freq_map
 
 
-def dedupe(items: list[str]) -> list[str]:
+def deduce(items: list[str]) -> list[str]:
     return list(dict.fromkeys(items))
 
 
-def group_by(items: list[dict], key: str) -> dict[str, list[dict]]:
+""" def group_by(items: list[dict], key: str) -> dict[str, list[dict]]:
     grouped: dict[str, list[dict]] = {}
 
     for item in items:
@@ -42,3 +43,12 @@ def group_by(items: list[dict], key: str) -> dict[str, list[dict]]:
         grouped[group_key].append(item)
 
     return grouped
+    """
+
+def group_by(items: list[dict], key: str) -> dict[str, list[dict]]:
+    grouped: defaultdict(list)
+    for item in items:
+        group_key = item.get(key)
+        grouped[group_key].append(item)
+
+    return grouped 
