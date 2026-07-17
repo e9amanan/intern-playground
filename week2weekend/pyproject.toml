@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "energy_insights"
+version = "0.1.0"
+description = "CLI tool for hourly energy price analysis."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [] # We only used standard libraries, so this is empty!
+
+
+[project.scripts]
+energy_insights = "energy_insights.cli:main"
