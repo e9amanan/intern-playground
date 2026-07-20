@@ -1,18 +1,20 @@
-from datetime import date,timedelta
-from features.models import task
-from core.manager import taskmanager
+"""Main entry point for task usage."""
+from datetime import date, timedelta
+from features.models import Task
+from core.manager import TaskManager
 
 def main():
-    manager = taskmanager()
+    """Main execution."""
+    manager = TaskManager()
 
-    task1=task(
+    task1 = Task(
         title="Complete OOP Exercise",
         description="finish day 1 syllabus",
         status="todo",
         due_date=date.today() + timedelta(days=1)
     )
 
-    task2=task(
+    task2 = Task(
         title="review Leetcode",
         description="merge sorted lists",
         status="in_progress"
@@ -23,7 +25,7 @@ def main():
 
     task1.advance_status()
 
-    pending=manager.get_pending_tasks()
+    pending = manager.get_pending_tasks()
     print(f"pending tasks({len(pending)}):")
     for t in pending:
         print(f"- {t.title} [{t.status}]")

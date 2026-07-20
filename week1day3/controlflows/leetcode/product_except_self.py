@@ -1,4 +1,8 @@
-def productExceptSelf(nums: list[int]) -> list[int]:
+"""contains a solution for the LeetCode 'Product of Array Except Self' problem."""
+
+
+def product_except_self(nums: list[int]) -> list[int]:
+    """Calculates the product of all elements in the array except the one at the current index"""
     length = len(nums)
     answer = [1] * length
 

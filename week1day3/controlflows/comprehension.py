@@ -3,7 +3,8 @@
 raw_prices = ["12.50", " ", "invalid", "95.20", "45.00"]
 
 valid_prices = [float(p) for p in raw_prices if p.strip().replace(".", "", 1).isdigit()]
-print("valid prices")
+print("Valid Prices:", valid_prices)
 
 headers = ["  User_ID  ", "EMAIL@test.com", " Status"]
-clean_header = {i: headers.strip().lower() for i, header in enumerate(headers)}
+clean_header = {i: header.strip().lower() for i, header in enumerate(headers)}
+print("Clean Headers:", clean_header)

@@ -46,7 +46,7 @@ def deduce(items: list[str]) -> list[str]:
     """
 
 def group_by(items: list[dict], key: str) -> dict[str, list[dict]]:
-    grouped: defaultdict(list)
+    grouped=defaultdict(list)
     for item in items:
         group_key = item.get(key)
         grouped[group_key].append(item)

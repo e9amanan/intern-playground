@@ -11,6 +11,7 @@ import sys
 
 
 def main():
+    """Main entry point for the CLI to parse arguments and load the CSV."""
     parser = argparse.ArgumentParser()
     parser.add_argument("file", help="Path to the target CSV file")
     args = parser.parse_args()

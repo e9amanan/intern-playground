@@ -1,43 +1,43 @@
-"""Inheritance
-
-    Create base Task class and inherit UrgentTask subclass
-    Method overriding and super()
-    When to use inheritance vs composition
-
-Composition over inheritance
-
-    Example: TaskManager that contains a list of Task objects
-
+"""
+Module demonstrating Inheritance and Composition.
 """
 
-class task:
-    def __init__(self,title:str):
-        self.title=title
-        self.completed=False
+class Task:
+    """Base class for all tasks."""
+    def __init__(self, title: str):
+        self.title = title
+        self.completed = False
 
     def display(self) -> str:
-        return f"task: {self.title}"
+        """Returns the basic task title."""
+        return f"Task: {self.title}"
 
-class urgenttask(task):
-    def __init__(self,title:str,deadline:str):
+
+class UrgentTask(Task):
+    """Subclass that adds a deadline to a task."""
+    def __init__(self, title: str, deadline: str):
+        
         super().__init__(title)
-        self.deadline=deadline
+        self.deadline = deadline
 
-    def display(self)->str:
-        base_display=super().display()
-        return f"{base_display} (DUE:{self.deadline})"
+    def display(self) -> str:
+        """Overrides parent display to include the deadline."""
+        
+        base_display = super().display()
+        return f"{base_display} (DUE: {self.deadline})"
 
-class taskmanager:
 
+class TaskManager:
+    """Class demonstrating composition: a manager containing a list of tasks."""
     def __init__(self):
-        self._tasks: list =[]
+        self._tasks: list = []
 
-    def add_tasks(self,task):
+    def add_task(self, task: Task):
+        """Adds a Task or UrgentTask object to the manager."""
         self._tasks.append(task)
 
-    def get_pending_tasks(self)->list:
-        return [t for t in self._tasks if getattr(t, 'status','')!= "done"]
-    
+    def get_pending_tasks(self) -> list:
+        """Filters the list for tasks that are not yet completed."""
+        return [t for t in self._tasks if not t.completed]
 
 
-    

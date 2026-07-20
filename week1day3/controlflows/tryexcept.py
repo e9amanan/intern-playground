@@ -3,26 +3,28 @@ try except practice
 """
 
 
-class datavalidationerror(Exception):
+class DataValidationError(Exception):
     """custom exception for bad data"""
-
-    pass
 
 
 def calculatingaverage(numbers_list):
+    """Calculates the average of a list of numbers."""
     try:
         total = sum(numbers_list)
         count = len(numbers_list)
 
         if count == 0:
-            raise datavalidationerror("cannot calculate average of empty list")
-        return total / count
+            raise DataValidationError("cannot calculate average of empty list")
+        # Define the result here so the else block can use it
+        result = total / count
 
     except TypeError:
         print("error:list contains non numeric values")
+        return None
 
-    except datavalidationerror as e:
+    except DataValidationError as e:
         print(f"validation error:{e}")
+        return None
 
     else:
         print("calculation succesful")
