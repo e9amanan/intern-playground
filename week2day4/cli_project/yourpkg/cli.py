@@ -6,10 +6,8 @@ import argparse
 import csv
 
 from week2day4.cli_project.yourpkg import core
-from week2day4.cli_project.yourpkg.exceptions import (
-    FileProcessingError,
-    ValidationError,
-)
+from week2day4.cli_project.yourpkg.exceptions import (FileProcessingError,
+                                                      ValidationError)
 
 
 def handle_analyze(args) -> int:

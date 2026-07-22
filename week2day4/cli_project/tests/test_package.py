@@ -4,6 +4,7 @@ for the energy_insights package.
 """
 
 import pytest
+
 from week2day4.cli_project.yourpkg.cli import main
 from week2day4.cli_project.yourpkg.core import EnergySeries
 from week2day4.cli_project.yourpkg.exceptions import ValidationError
