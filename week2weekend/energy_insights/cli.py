@@ -6,9 +6,9 @@ Provides subcommands to summarize data, find spikes, and detect anomalies.
 import argparse
 from pathlib import Path
 
-from energy_insights.io_utils import load_data
 from energy_insights.core import EnergySeries
 from energy_insights.exceptions import DataLoadError, ValidationError
+from energy_insights.io_utils import load_data
 
 
 def _get_series(args: argparse.Namespace) -> EnergySeries:
@@ -99,23 +99,34 @@ def main(argv: list[str] | None = None) -> int:
         int: Exit status code.
     """
     parser = argparse.ArgumentParser(
-        prog="energy_insights",
-        description="CLI tool for hourly energy price analysis."
+        prog="energy_insights", description="CLI tool for hourly energy price analysis."
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     parent_parser = argparse.ArgumentParser(add_help=False)
-    parent_parser.add_argument("--file", required=True, help="Path to CSV/JSON data file.")
-    parent_parser.add_argument("--metric", required=True, help="Column name to analyze.")
+    parent_parser.add_argument(
+        "--file", required=True, help="Path to CSV/JSON data file."
+    )
+    parent_parser.add_argument(
+        "--metric", required=True, help="Column name to analyze."
+    )
 
-    summary_p = subparsers.add_parser("summary", parents=[parent_parser], help="View dataset stats.")
+    summary_p = subparsers.add_parser(
+        "summary", parents=[parent_parser], help="View dataset stats."
+    )
     summary_p.set_defaults(func=handle_summary)
 
-    spikes_p = subparsers.add_parser("spikes", parents=[parent_parser], help="View highest values.")
-    spikes_p.add_argument("--top", type=int, default=5, help="Number of spikes (default: 5).")
+    spikes_p = subparsers.add_parser(
+        "spikes", parents=[parent_parser], help="View highest values."
+    )
+    spikes_p.add_argument(
+        "--top", type=int, default=5, help="Number of spikes (default: 5)."
+    )
     spikes_p.set_defaults(func=handle_spikes)
 
-    anomalies_p = subparsers.add_parser("anomalies", parents=[parent_parser], help="Detect outliers.")
+    anomalies_p = subparsers.add_parser(
+        "anomalies", parents=[parent_parser], help="Detect outliers."
+    )
     anomalies_p.set_defaults(func=handle_anomalies)
 
     args = parser.parse_args(argv)

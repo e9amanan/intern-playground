@@ -7,8 +7,8 @@ import argparse
 import csv
 from collections import defaultdict
 from datetime import datetime
-from statistics import mean, stdev
 from pathlib import Path
+from statistics import mean, stdev
 
 
 class ValidationError(Exception):
@@ -18,26 +18,20 @@ class ValidationError(Exception):
 def parse_arguments():
     """
     Parse command-line arguments.
-    
+
     Returns:
         argparse.Namespace: Parsed arguments.
     """
     parser = argparse.ArgumentParser(
-        description="Analyze hourly energy price data",
-        exit_on_error=False
+        description="Analyze hourly energy price data", exit_on_error=False
     )
     # Changed --File to --file to match args.file usage in main()
     parser.add_argument("--file", required=True, help="CSV file path (required)")
     parser.add_argument(
-        "--metric",
-        default="price",
-        help="Column name to analyze (default: 'price')"
+        "--metric", default="price", help="Column name to analyze (default: 'price')"
     )
     parser.add_argument(
-        "--top",
-        type=int,
-        default=10,
-        help="Number of spikes to show (default: 10)"
+        "--top", type=int, default=10, help="Number of spikes to show (default: 10)"
     )
     return parser.parse_args()
 
@@ -49,7 +43,7 @@ def validate_inputs(file_path, top_n):
     Args:
         file_path (str): Path to the input CSV file.
         top_n (int): Number of spikes to display.
-    
+
     Raises:
         FileNotFoundError: If the file does not exist.
         ValidationError: If the path is not a file.
@@ -63,7 +57,9 @@ def validate_inputs(file_path, top_n):
         raise ValidationError(f"The path '{file_path}' exists but is not a file.")
 
     if not isinstance(top_n, int):
-        raise TypeError(f"The 'top' argument must be an integer. Got: {type(top_n).__name__}")
+        raise TypeError(
+            f"The 'top' argument must be an integer. Got: {type(top_n).__name__}"
+        )
     if top_n <= 0:
         raise ValueError(f"The 'top' argument must be a positive integer. Got: {top_n}")
 
@@ -75,16 +71,16 @@ def load_and_clean_data(file_path, metric):
     Args:
         file_path (str): Path to the input CSV file.
         metric (str): The column name to extract values from.
-    
+
     Returns:
         list: A list of dictionaries containing parsed timestamps and values.
-        
+
     Raises:
         ValidationError: If the CSV is empty, missing headers, or lacks valid data rows.
     """
     data = []
 
-    with open(file_path, mode='r', encoding="utf-8") as csvfile:
+    with open(file_path, mode="r", encoding="utf-8") as csvfile:
         reader = csv.DictReader(csvfile)
 
         if not reader.fieldnames:

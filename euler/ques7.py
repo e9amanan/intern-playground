@@ -30,7 +30,7 @@ def find_nth_prime(n):
         current_number += 1
         if is_prime(current_number):
             prime_count += 1
-            
+
     return current_number
 
 

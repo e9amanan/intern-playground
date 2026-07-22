@@ -3,11 +3,10 @@ Module providing pytest test cases for the CSV and JSON file I/O utilities.
 """
 
 from pathlib import Path
+
 import pytest
-
-from insights_energy.io_utils import read_csv, write_csv, read_json, write_json
 from insights_energy.exceptions import FileProcessingError, ValidationError
-
+from insights_energy.io_utils import read_csv, read_json, write_csv, write_json
 
 # CSV FILES
 
@@ -18,7 +17,7 @@ def test_write_and_read_csv_success(tmp_path: Path) -> None:
 
     data_to_write = [
         {"timestamp": "2026-07-14T10:00:00", "price": "45.5"},
-        {"timestamp": "2026-07-14T11:00:00", "price": "46.0"}
+        {"timestamp": "2026-07-14T11:00:00", "price": "46.0"},
     ]
 
     write_csv(test_file, data_to_write, fieldnames=["timestamp", "price"])
@@ -36,7 +35,7 @@ def test_read_csv_missing_column(tmp_path: Path) -> None:
     write_csv(
         test_file,
         [{"timestamp": "2026-07-14", "cost": "45.5"}],
-        fieldnames=["timestamp", "cost"]
+        fieldnames=["timestamp", "cost"],
     )
 
     with pytest.raises(ValidationError) as error_info:

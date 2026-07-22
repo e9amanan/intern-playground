@@ -20,18 +20,20 @@ def read_csv(file_path: str, required_column: str) -> list[dict]:
         raise FileProcessingError(f"The path '{file_path}' exists but is not a file.")
 
     try:
-        with open(file_path, mode='r', encoding='utf-8') as csvfile:
+        with open(file_path, mode="r", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
 
             if not reader.fieldnames:
                 raise ValidationError("The CSV file is empty or missing headers")
             if required_column and required_column not in reader.fieldnames:
-                raise ValidationError(f"Metric column '{required_column}' not found in headers")
+                raise ValidationError(
+                    f"Metric column '{required_column}' not found in headers"
+                )
 
             return list(reader)
 
     except IOError as e:
-        
+
         raise FileProcessingError(f"Couldn't read CSV file: {e}") from e
 
 
@@ -39,7 +41,7 @@ def write_csv(file_path: str, data: list[dict], fieldnames: list[str]) -> None:
     """Write a list of dictionaries to a CSV file."""
     if not data:
         return
-    
+
     try:
         with open(file_path, mode="w", encoding="utf-8", newline="") as file:
             writer = csv.DictWriter(file, fieldnames=fieldnames)
@@ -56,7 +58,7 @@ def read_json(file_path: str, expected_type: type = list) -> Any:
         raise FileProcessingError(f"File not found: {file_path}")
 
     try:
-        with open(file_path, mode="r", encoding='utf-8') as file:
+        with open(file_path, mode="r", encoding="utf-8") as file:
             data = json.load(file)
             if not isinstance(data, expected_type):
                 raise ValidationError(

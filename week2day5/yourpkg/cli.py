@@ -6,7 +6,7 @@ import argparse
 import csv
 
 from week2day5.yourpkg import core
-from week2day5.yourpkg.exception import ValidationError, FileProcessingError
+from week2day5.yourpkg.exception import FileProcessingError, ValidationError
 
 
 def _load_csv(file_path: str) -> list[dict]:
@@ -29,7 +29,7 @@ def handle_analyze(args) -> int:
         # Refactored: Linear flow without nested try/except blocks
         raw_rows = _load_csv(args.file)
         clean_data = core.clean_data(raw_rows, args.metric)
-        
+
         core.display_daily_averages(clean_data)
         core.display_top_spikes(clean_data, args.top)
         core.display_anomalies(clean_data)
@@ -48,39 +48,36 @@ def main(argv=None) -> int:
     """Main entry point for the CLI."""
     parser = argparse.ArgumentParser(
         prog="yourpkg",
-        description="A CLI for time-series data analysis and anomaly detection."
+        description="A CLI for time-series data analysis and anomaly detection.",
     )
 
     subparsers = parser.add_subparsers(
-        dest="command",
-        required=True,
-        help="Available commands"
+        dest="command", required=True, help="Available commands"
     )
 
     analyze_parser = subparsers.add_parser(
-        "analyze",
-        help="Analyze time-series data from a CSV."
+        "analyze", help="Analyze time-series data from a CSV."
     )
 
     analyze_parser.add_argument(
-        "--file", "-f",
+        "--file", "-f", required=True, help="Path to the CSV file to analyze."
+    )
+
+    analyze_parser.add_argument(
+        "--metric",
+        "-m",
         required=True,
-        help="Path to the CSV file to analyze."
+        help="The name of the metric column to extract (e.g., 'price').",
     )
 
     analyze_parser.add_argument(
-        "--metric", "-m",
-        required=True,
-        help="The name of the metric column to extract (e.g., 'price')."
-    )
-
-    analyze_parser.add_argument(
-        "--top", "-t",
+        "--top",
+        "-t",
         type=int,
         default=3,
-        help="Number of top spikes to display (defaults to 3)."
+        help="Number of top spikes to display (defaults to 3).",
     )
-    
+
     analyze_parser.set_defaults(func=handle_analyze)
 
     args = parser.parse_args(argv)

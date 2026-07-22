@@ -47,7 +47,7 @@ def display_daily_averages(data: list[dict]) -> None:
 
     print("Daily averages:")
     print(f"{'Date':<12} {'Avg Price'}")
-    
+
     for day, values in sorted(daily_totals.items()):
         avg = mean(values)
         print(f"{day:<12} ${avg:.2f}")

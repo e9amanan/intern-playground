@@ -5,17 +5,17 @@ Module for calculating the sum of even Fibonacci numbers using an optimized recu
 
 def even_fibo_optimized(limit):
     """
-    Calculates the sum of even Fibonacci numbers up to the limit by 
+    Calculates the sum of even Fibonacci numbers up to the limit by
     directly generating only the even terms.
     """
     a, b = 2, 8
     total_sum = 0
-    
+
     while a <= limit:
         total_sum += a
         # Generate the next even Fibonacci number directly
         a, b = b, 4 * b + a
-        
+
     return total_sum
 
 

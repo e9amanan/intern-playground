@@ -12,10 +12,10 @@ from .exceptions import ValidationError
 
 def clean_data(raw_rows: list[dict[str, str]], metric: str) -> list[dict[str, Any]]:
     """
-    Parse raw CSV rows, extract the timestamp and specified metric, 
+    Parse raw CSV rows, extract the timestamp and specified metric,
     and filter out invalid data.
     """
-    data= []
+    data = []
     for line_num, row in enumerate(raw_rows, start=2):
         try:
             raw_ts = row["timestamp"].replace("Z", "+00:00")

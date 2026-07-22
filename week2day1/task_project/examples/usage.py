@@ -1,7 +1,10 @@
 """Main entry point for task usage."""
+
 from datetime import date, timedelta
-from features.models import Task
+
 from core.manager import TaskManager
+from features.models import Task
+
 
 def main():
     """Main execution."""
@@ -11,13 +14,11 @@ def main():
         title="Complete OOP Exercise",
         description="finish day 1 syllabus",
         status="todo",
-        due_date=date.today() + timedelta(days=1)
+        due_date=date.today() + timedelta(days=1),
     )
 
     task2 = Task(
-        title="review Leetcode",
-        description="merge sorted lists",
-        status="in_progress"
+        title="review Leetcode", description="merge sorted lists", status="in_progress"
     )
 
     manager.add_task(task1)
@@ -29,6 +30,7 @@ def main():
     print(f"pending tasks({len(pending)}):")
     for t in pending:
         print(f"- {t.title} [{t.status}]")
+
 
 if __name__ == "__main__":
     main()

@@ -3,6 +3,7 @@
 import csv
 import json
 from pathlib import Path
+
 from .exceptions import DataLoadError
 
 
@@ -22,7 +23,6 @@ def load_data(file_path: Path) -> list[dict]:
             with file_path.open("r", encoding="utf-8") as file_handle:
                 return json.load(file_handle)
 
-        
         raise DataLoadError(f"Unsupported format '{ext}'. Use .csv or .json")
 
     except json.JSONDecodeError as exc:

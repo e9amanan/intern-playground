@@ -23,5 +23,7 @@ def title_case(s: str) -> str:
 
     return " ".join(new_words)
 """
+
+
 def title_case_simple(s: str) -> str:
     return s.title()

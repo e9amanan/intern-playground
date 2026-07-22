@@ -18,6 +18,7 @@ Function specs
 
 from collections import defaultdict
 
+
 def frequencies(items: list[str]) -> dict[str, int]:
     freq_map: dict[str, int] = {}
 
@@ -45,10 +46,11 @@ def deduce(items: list[str]) -> list[str]:
     return grouped
     """
 
+
 def group_by(items: list[dict], key: str) -> dict[str, list[dict]]:
-    grouped=defaultdict(list)
+    grouped = defaultdict(list)
     for item in items:
         group_key = item.get(key)
         grouped[group_key].append(item)
 
-    return grouped 
+    return grouped

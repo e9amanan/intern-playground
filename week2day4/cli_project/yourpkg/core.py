@@ -7,7 +7,7 @@ from collections import defaultdict
 from datetime import datetime
 from statistics import mean, stdev
 
-from .exceptions import ValidationError
+from week2day4.cli_project.yourpkg.exceptions import ValidationError
 
 
 def clean_data(raw_rows: list[dict], metric: str) -> list[dict]:
@@ -53,10 +53,10 @@ def display_daily_averages(data: list[dict]) -> None:
         daily_totals[day_str].append(row["value"])
 
     print("Daily averages:")
-    
+
     # FIXED: Moved the colon outside the string so f-string alignment actually works
     print(f"{'Date':<12} {'Avg Price'}")
-    
+
     for day, values in sorted(daily_totals.items()):
         avg = mean(values)
         print(f"{day:<12} ${avg:.2f}")
