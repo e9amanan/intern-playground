@@ -17,7 +17,7 @@ def find_largest_palindrome():
 
     # Start from the largest 3-digit number and work downwards
     for i in range(999, 99, -1):
-        
+
         # Start j at i to avoid redundant calculations (e.g., 900*999 vs 999*900)
         for j in range(i, 99, -1):
             product = i * j

@@ -12,6 +12,7 @@ TaskStatus = Literal["todo", "in_progress", "done"]
 @dataclass
 class Task:
     """Task with validation."""
+
     title: str
     description: str
     status: TaskStatus = "todo"
@@ -30,7 +31,7 @@ class Task:
         valid_transitions = {
             "todo": ["in_progress"],
             "in_progress": ["done", "todo"],
-            "done": ["todo"]
+            "done": ["todo"],
         }
 
         if new_status not in valid_transitions[self.status]:

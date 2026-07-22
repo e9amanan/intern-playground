@@ -2,6 +2,7 @@
 
 from datetime import datetime
 from statistics import mean, stdev
+
 from .exceptions import ValidationError
 
 
@@ -13,7 +14,9 @@ class EnergySeries:
         self.data = self._clean(raw_rows)
 
         if not self.data:
-            raise ValidationError(f"No valid numeric data found for metric '{self.metric}'.")
+            raise ValidationError(
+                f"No valid numeric data found for metric '{self.metric}'."
+            )
 
     def _clean(self, raw_rows: list[dict]) -> list[dict]:
         """Parse timestamps and filter out invalid rows."""
@@ -41,7 +44,7 @@ class EnergySeries:
             "count": len(vals),
             "min": min(vals),
             "max": max(vals),
-            "mean": mean(vals)
+            "mean": mean(vals),
         }
 
     def top_spikes(self, count: int) -> list[dict]:

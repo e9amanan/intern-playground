@@ -8,6 +8,7 @@ from dataclasses import dataclass
 @dataclass
 class Product:
     """Represents a product with a name and price."""
+
     name: str
     price: float
 

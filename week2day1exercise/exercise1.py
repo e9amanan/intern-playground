@@ -2,6 +2,7 @@
 Module for defining the Person class.
 """
 
+
 class Person:
     """A class representing a person with a name and age."""
 

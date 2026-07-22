@@ -2,6 +2,7 @@
 Module providing the BankAccount class for financial transactions.
 """
 
+
 class BankAccount:
     """Represents a bank account with deposit and withdrawal capabilities."""
 

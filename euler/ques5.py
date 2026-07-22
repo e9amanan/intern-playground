@@ -1,6 +1,7 @@
 """
 Module for finding the smallest multiple evenly divisible by all numbers in a range.
 """
+
 import math
 
 
@@ -11,7 +12,7 @@ def compute_lcm(a, b):
 
 def find_smallest_multiple(limit):
     """
-    Finds the smallest positive number that is evenly divisible by all 
+    Finds the smallest positive number that is evenly divisible by all
     numbers from 1 up to the given limit.
     """
     smallest_multiple = 1

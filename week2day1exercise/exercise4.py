@@ -1,7 +1,9 @@
 """
 Module defining the TaskManager class to handle collections of Tasks.
 """
+
 from exercise3 import Task
+
 
 class TaskManager:
     """Manages a list of Task objects."""
@@ -30,7 +32,7 @@ class TaskManager:
             if task.title == title:
                 task.mark_complete()
                 return True
-        
+
         return False
 
     def __len__(self) -> int:

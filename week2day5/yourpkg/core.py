@@ -7,7 +7,7 @@ from collections import defaultdict
 from datetime import datetime
 from statistics import mean, stdev
 
-from .exceptions import ValidationError
+from week2day5.yourpkg.exception import ValidationError
 
 
 def _parse_row(row: dict, metric: str, line_num: int) -> dict | None:
@@ -47,7 +47,7 @@ def display_daily_averages(data: list[dict]) -> None:
 
     print("Daily averages:")
     print(f"{'Date':<12} {'Avg Price'}")
-    
+
     for day, values in sorted(daily_totals.items()):
         avg = mean(values)
         print(f"{day:<12} ${avg:.2f}")

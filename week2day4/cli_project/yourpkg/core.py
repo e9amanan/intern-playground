@@ -53,10 +53,10 @@ def display_daily_averages(data: list[dict]) -> None:
         daily_totals[day_str].append(row["value"])
 
     print("Daily averages:")
-    
+
     # FIXED: Moved the colon outside the string so f-string alignment actually works
     print(f"{'Date':<12} {'Avg Price'}")
-    
+
     for day, values in sorted(daily_totals.items()):
         avg = mean(values)
         print(f"{day:<12} ${avg:.2f}")

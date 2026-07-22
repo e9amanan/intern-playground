@@ -10,7 +10,7 @@ from utils.advanced import apply_to_values, chain_functions, safe_divide
 def test_apply_to_values_happy_path():
     """Tests that a function is correctly applied to all dictionary values."""
     data = {"apples": 2, "bananas": 5}
-    
+
     result = apply_to_values(data, lambda x: x * 10)
     assert result == {"apples": 20, "bananas": 50}
 
@@ -52,10 +52,8 @@ def test_chain_functions_happy_path():
     def double(x):
         return x * 2
 
-    
     pipeline = chain_functions(add_five, double)
 
-   
     assert pipeline(10) == 30
 
 
