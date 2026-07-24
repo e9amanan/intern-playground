@@ -3,6 +3,7 @@ Unit tests for the advanced utility functions.
 """
 
 import pytest
+
 from week1day2.utils.advanced import apply_to_values, chain_functions, safe_divide
 
 
