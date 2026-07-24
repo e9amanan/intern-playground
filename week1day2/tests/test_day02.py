@@ -4,8 +4,7 @@ Testing Your Solutions
 Create tests/test_day02.py:
 
 import unittest
-from utils.text import clean_text, tokenize, count_chars
-from utils.collections import frequencies, dedupe, group_by
+
 
 class TestTextUtils(unittest.TestCase):
     def test_clean_text(self):
@@ -25,8 +24,8 @@ if __name__ == "__main__":
 
 import unittest
 
-from utils.collections import dedupe, frequencies, group_by
-from utils.text import clean_text, count_chars, tokenize
+from week1day2.utils.collection_utils import dedupe, frequencies, group_by
+from week1day2.utils.text import clean_text, count_chars, tokenize
 
 
 class TestTextUtils(unittest.TestCase):

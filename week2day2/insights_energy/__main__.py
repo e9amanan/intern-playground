@@ -4,8 +4,12 @@ Module providing the command-line interface for analyzing hourly energy price da
 
 import argparse
 
-from .core import (clean_data, display_anomalies, display_daily_averages,
-                   display_top_spikes)
+from .core import (
+    clean_data,
+    display_anomalies,
+    display_daily_averages,
+    display_top_spikes,
+)
 from .exceptions import FileProcessingError, ValidationError
 from .io_utils import read_csv, write_csv, write_json
 

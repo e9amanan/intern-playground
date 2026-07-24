@@ -1,12 +1,13 @@
 """
 Comprehensive tests covering core logic, parameterization, and CLI routing
 for the energy_insights package.
+week2day4.cli_project.yourpkg.core
 """
 
 import pytest
 
 from week2day4.cli_project.yourpkg.cli import main
-from week2day4.cli_project.yourpkg.core import EnergySeries
+from week2weekend.energy_insights.core import EnergySeries
 from week2day4.cli_project.yourpkg.exceptions import ValidationError
 
 # --- CORE LOGIC & OOP TESTS ---

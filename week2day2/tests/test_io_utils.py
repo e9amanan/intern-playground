@@ -5,8 +5,13 @@ Module providing pytest test cases for the CSV and JSON file I/O utilities.
 from pathlib import Path
 
 import pytest
-from insights_energy.exceptions import FileProcessingError, ValidationError
-from insights_energy.io_utils import read_csv, read_json, write_csv, write_json
+from week2day2.insights_energy.exceptions import FileProcessingError, ValidationError
+from week2day2.insights_energy.io_utils import (
+    read_csv,
+    read_json,
+    write_csv,
+    write_json,
+)
 
 # CSV FILES
 

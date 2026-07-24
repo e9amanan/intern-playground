@@ -1,5 +1,6 @@
 """this implements quick sort algo to find kth largest element in an unsorted list"""
 
+
 def find_kth_largest(nums: list[int], k: int) -> int:
     """find kth largest element in a unsorted array"""
     target_index = len(nums) - k

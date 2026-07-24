@@ -7,5 +7,3 @@ class FileProcessingError(Exception):
 
 class ValidationError(Exception):
     """custom exception for data validation and formatting errors"""
-
-    pass
