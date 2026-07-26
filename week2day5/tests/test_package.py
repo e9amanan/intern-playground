@@ -4,9 +4,6 @@ Comprehensive tests covering core logic, parameterization, and CLI routing.
 
 import pytest
 from yourpkg.cli import main
-from week2day5.yourpkg.exception import ValidationError
-
-from week2day5.yourpkg import core
 
 from week2day5.yourpkg import core
 from week2day5.yourpkg.cli import main
@@ -26,7 +23,6 @@ def valid_dataset():
 
 
 def test_clean_data_valid(valid_dataset):
-def test_clean_data_valid():
     """Test that valid data is correctly parsed and values are converted."""
     cleaned = core.clean_data(valid_dataset, "price")
     assert len(cleaned) == 3

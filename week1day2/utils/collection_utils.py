@@ -28,7 +28,7 @@ def frequencies(items: list[str]) -> dict[str, int]:
     return freq_map
 
 
-def deduce(items: list[str]) -> list[str]:
+def dedupe(items: list[str]) -> list[str]:
     return list(dict.fromkeys(items))
 
 

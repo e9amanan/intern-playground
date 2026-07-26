@@ -9,7 +9,6 @@ import pytest
 from week2day4.cli_project.yourpkg.cli import main
 from week2day4.cli_project.yourpkg.core import EnergySeries
 from week2day4.cli_project.yourpkg.exceptions import ValidationError
-from week2day4.cli_project.yourpkg.exceptions import ValidationError
 from week2weekend.energy_insights.core import EnergySeries
 
 # --- CORE LOGIC & OOP TESTS ---
