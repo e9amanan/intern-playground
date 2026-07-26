@@ -1,11 +1,13 @@
 """Tests for core logic, parameterization, and CLI routing."""
 
-# pylint: disable=redefined-outer-name
-
 import pytest
 from energy_insights.cli import main
 from energy_insights.core import EnergySeries
 from energy_insights.exceptions import ValidationError
+
+from week2weekend.energy_insights.cli import main
+from week2weekend.energy_insights.core import EnergySeries
+from week2weekend.energy_insights.exceptions import ValidationError
 
 # --- CORE LOGIC & OOP TESTS ---
 

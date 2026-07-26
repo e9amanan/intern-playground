@@ -9,6 +9,9 @@ from pathlib import Path
 from energy_insights.core import EnergySeries
 from energy_insights.exceptions import DataLoadError, ValidationError
 from energy_insights.io_utils import load_data
+from week2weekend.energy_insights.core import EnergySeries
+from week2weekend.energy_insights.exceptions import DataLoadError, ValidationError
+from week2weekend.energy_insights.io_utils import load_data
 
 
 def _get_series(args: argparse.Namespace) -> EnergySeries:

@@ -7,7 +7,7 @@ from collections import defaultdict
 from datetime import datetime
 from statistics import mean, stdev
 
-from .exceptions import ValidationError
+from week2day4.cli_project.yourpkg.exceptions import ValidationError
 
 
 def clean_data(raw_rows: list[dict], metric: str) -> list[dict]:

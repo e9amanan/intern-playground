@@ -1,8 +1,8 @@
-"""Makefile convenience
+#Makefile convenience
 
-    Add Makefile targets: format (black+isort), lint (pylint), run (example command).
+#Add Makefile targets: format (black+isort), lint (pylint), run (example command).
 
-"""
+
 
 .PHONY: format lint run
 

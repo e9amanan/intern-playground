@@ -3,7 +3,8 @@ Unit tests for the collection_utils module.
 """
 
 import pytest
-from utils.collection_utils import deduce, frequencies, group_by
+
+from week1day2.utils.collection_utils import deduce, frequencies, group_by
 
 
 def test_frequencies_happy_path():

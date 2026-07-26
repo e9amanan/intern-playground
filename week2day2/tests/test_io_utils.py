@@ -8,6 +8,14 @@ import pytest
 from insights_energy.exceptions import FileProcessingError, ValidationError
 from insights_energy.io_utils import read_csv, read_json, write_csv, write_json
 
+from week2day2.insights_energy.exceptions import FileProcessingError, ValidationError
+from week2day2.insights_energy.io_utils import (
+    read_csv,
+    read_json,
+    write_csv,
+    write_json,
+)
+
 # CSV FILES
 
 

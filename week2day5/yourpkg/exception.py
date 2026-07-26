@@ -11,3 +11,6 @@ class ValidationError(Exception):
     """custom exception for data validation and formatting errors"""
 
     pass
+
+class ValidationError(Exception):
+    """custom exception for data validation and formatting errors"""

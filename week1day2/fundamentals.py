@@ -1,33 +1,34 @@
 # string
+from collections import namedtuple
 
-text = "python"
+TEXT = "python"
 
-print(text[0:3])
-print(text[3:])
-print(text[:3])
-print(text[::-1])
-print(text[::2])
-print(text[::2])
+print(TEXT[0:3])
+print(TEXT[3:])
+print(TEXT[:3])
+print(TEXT[::-1])
+print(TEXT[::2])
+print(TEXT[::2])
 
 
-age = 25
-name = "alice"
-print(f"my name is {name} and in 5 years i will be {age+5}")
+AGE = 25
+NAME = "alice"
+print(f"my name is {NAME} and in 5 years i will be {AGE+5}")
 
-sentence = "lets learn python today"
-words = sentence.split(" ")
+SENTENCE = "lets learn python today"
+words = SENTENCE.split(" ")
 print(words)
 
 
-yo = sentence.split("e")
+yo = SENTENCE.split("e")
 print(yo)
 
 csv = ",".join(words)
 print(csv)
 
-messy = " hello world  how are you   "
-clean = messy.strip()
-print(clean)
+MESSY = " hello world  how are you   "
+CLEAN = MESSY.strip()
+print(CLEAN)
 
 # lists
 numbers = [1, 2, 3, 4, 5]
@@ -63,7 +64,6 @@ location = (40.7128, -74.0060)
 lat, lon = location
 print(f"latitutude of london is {lat}")
 
-from collections import namedtuple
 
 color = namedtuple("color", ["red", "green", "blue"])
 

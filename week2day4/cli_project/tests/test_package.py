@@ -1,15 +1,16 @@
 """
 Comprehensive tests covering core logic, parameterization, and CLI routing
 for the energy_insights package.
+week2day4.cli_project.yourpkg.core
 """
-
-# pylint: disable=redefined-outer-name
 
 import pytest
 
 from week2day4.cli_project.yourpkg.cli import main
 from week2day4.cli_project.yourpkg.core import EnergySeries
 from week2day4.cli_project.yourpkg.exceptions import ValidationError
+from week2day4.cli_project.yourpkg.exceptions import ValidationError
+from week2weekend.energy_insights.core import EnergySeries
 
 # --- CORE LOGIC & OOP TESTS ---
 
@@ -24,7 +25,7 @@ def valid_dataset():
     ]
 
 
-def test_energy_series_summary(valid_dataset):
+def test_energy_series_summary():
     """Test that the summary method correctly calculates basic statistics."""
     series = EnergySeries(valid_dataset, "price")
     stats = series.summary()

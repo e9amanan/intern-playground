@@ -1,4 +1,4 @@
-from energy_insights.cli import main
+from week2weekend.energy_insights.cli import main
 
 if __name__ == "__main__":
     raise SystemExit(main())
