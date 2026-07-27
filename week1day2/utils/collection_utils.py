@@ -32,19 +32,18 @@ def dedupe(items: list[str]) -> list[str]:
     return list(dict.fromkeys(items))
 
 
-""" def group_by(items: list[dict], key: str) -> dict[str, list[dict]]:
-    grouped: dict[str, list[dict]] = {}
+# def group_by(items: list[dict], key: str) -> dict[str, list[dict]]:
+# grouped: dict[str, list[dict]] = {}
 
-    for item in items:
-        group_key = item.get(key)
+# for item in items:
+# group_key = item.get(key)
 
-        if group_key not in grouped:
-            grouped[group_key] = []
+# if group_key not in grouped:
+# grouped[group_key] = []
 
-        grouped[group_key].append(item)
+# grouped[group_key].append(item)
 
-    return grouped
-    """
+# return grouped
 
 
 def group_by(items: list[dict], key: str) -> dict[str, list[dict]]:

@@ -1,8 +1,7 @@
-# string
 from collections import namedtuple
 
+# Strings
 TEXT = "python"
-
 print(TEXT[0:3])
 print(TEXT[3:])
 print(TEXT[:3])
@@ -10,116 +9,110 @@ print(TEXT[::-1])
 print(TEXT[::2])
 print(TEXT[::2])
 
-
 AGE = 25
 NAME = "alice"
 print(f"my name is {NAME} and in 5 years i will be {AGE+5}")
 
 SENTENCE = "lets learn python today"
-words = SENTENCE.split(" ")
-print(words)
+WORDS = SENTENCE.split(" ")
+print(WORDS)
 
+YO = SENTENCE.split("e")
+print(YO)
 
-yo = SENTENCE.split("e")
-print(yo)
-
-csv = ",".join(words)
-print(csv)
+# Pylint fix: Uppercase for global constants
+CSV_STRING = ",".join(WORDS)
+print(CSV_STRING)
 
 MESSY = " hello world  how are you   "
 CLEAN = MESSY.strip()
 print(CLEAN)
 
-# lists
-numbers = [1, 2, 3, 4, 5]
+# Lists
+NUMBERS = [1, 2, 3, 4, 5]
 
-doubles = [n * 2 for n in numbers]
-print(doubles)
+DOUBLES = [n * 2 for n in NUMBERS]
+print(DOUBLES)
 
-evens = [n * 2 for n in numbers if n % 2 == 0]
-print(evens)
+EVENS = [n * 2 for n in NUMBERS if n % 2 == 0]
+print(EVENS)
 
-print(numbers[0:2])
+print(NUMBERS[0:2])
 
-numbers.append([3, 4])
-print(numbers)
+NUMBERS.append([3, 4])
+print(NUMBERS)
 
-numbers.extend([3, 4])
-print(numbers)
+NUMBERS.extend([3, 4])
+print(NUMBERS)
 
-nums = [5, 1.9]
+NUMS = [5, 1.9]
 
-new = sorted(nums)
-print(new)
-print(nums)
+NEW_NUMS = sorted(NUMS)
+print(NEW_NUMS)
+print(NUMS)
 
-nums.sort()
-print(nums)
+NUMS.sort()
+print(NUMS)
 
+# Tuples
+LOCATION = (40.7128, -74.0060)
+LAT, LON = LOCATION
+print(f"latitude of location is {LAT}")
 
-# tupple
+# Pylint fix: PascalCase for namedtuple classes
+Color = namedtuple("Color", ["red", "green", "blue"])
+PURE_RED = Color(red=255, green=0, blue=0)
+print(PURE_RED.red)
 
-location = (40.7128, -74.0060)
+# Dictionaries
+EMPLOYEE = {"name": "sarah", "age": 28, "department": "engineering"}
 
-lat, lon = location
-print(f"latitutude of london is {lat}")
+EMPLOYEE["salary"] = 9000
+EMPLOYEE["age"] = 25
 
+EMP_LOCATION = EMPLOYEE.get("location")
+print(EMP_LOCATION)
 
-color = namedtuple("color", ["red", "green", "blue"])
-
-pure_red = color(red=255, green=0, blue=0)
-
-print(pure_red.red)
-
-# dictionaries
-
-employee = {"name": "sarah", "age": 28, "department": "engineering"}
-
-employee["salary"] = 9000
-employee["age"] = 25
-
-location = employee.get("location")
-print(location)
-
-for key in employee.keys():
+# Pylint fix: Iterate dictionary directly
+for key in EMPLOYEE:
     print(key)
 
-for value in employee.values():
+for value in EMPLOYEE.values():
     print(value)
 
-for key, value in employee.items():
-    print(f"employees{key} is {value}")
+for key, value in EMPLOYEE.items():
+    print(f"employees {key} is {value}")
 
+SQUARE_NUMBERS = [1, 2, 3, 4]
+SQUARES = {num: num * num for num in SQUARE_NUMBERS}
+print(SQUARES)
 
-numbers = [1, 2, 3, 4]
-squares = {num: num * num for num in numbers}
-print(squares)
+# Sets
+# Pylint fix: Remove duplicate values from set literal
+UNIQUE_NUMBERS = {1, 2, 3, 4}
+print(UNIQUE_NUMBERS)
 
-# sets
-unique_numbers = {1, 2, 3, 3, 3, 4}
-print(unique_numbers)
+EMPTY_SET = set()
 
-empty_set = set()
+ALLOWED_USERS_LIST = ["alice", "bob", "charlie"]
+ALLOWED_USERS_SET = {"alice", "bob", "charlie"}
 
-allowed_users_list = ["alice", "bob", "charlie"]
-allowed_users_set = {"alice", "bob", "charlie"}
+# Pylint fix: Uppercase for global constants
+USER = "bob"
+if USER in ALLOWED_USERS_SET:
+    print(f"{USER} is allowed in!")
 
-user = "bob"
-if user in allowed_users_set:
-    print(f"{user} is allowed in!")
+FRONTEND = {"Alice", "Bob", "Charlie"}
+BACKEND = {"Charlie", "David", "Eve"}
 
+ALL_DEVS = FRONTEND | BACKEND
+print(ALL_DEVS)
 
-frontend = {"Alice", "Bob", "Charlie"}
-backend = {"Charlie", "David", "Eve"}
+FULLSTACK = FRONTEND & BACKEND
+print(FULLSTACK)
 
-all_devs = frontend | backend
-print(all_devs)
+PURE_FRONTEND = FRONTEND - BACKEND
+print(PURE_FRONTEND)
 
-fullstack = frontend & backend
-print(fullstack)
-
-pure_frontend = frontend - backend
-print(pure_frontend)
-
-specialists = frontend ^ backend
-print(specialists)
+SPECIALISTS = FRONTEND ^ BACKEND
+print(SPECIALISTS)

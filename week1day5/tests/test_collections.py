@@ -4,7 +4,7 @@ Unit tests for the collection_utils module.
 
 import pytest
 
-from week1day2.utils.collection_utils import deduce, frequencies, group_by
+from week1day2.utils.collection_utils import dedupe, frequencies, group_by
 
 
 def test_frequencies_happy_path():
@@ -24,17 +24,17 @@ def test_frequencies_single_item():
 
 def test_deduce_happy_path():
     """Tests that duplicates are correctly removed from a list."""
-    assert deduce(["a", "b", "a", "c", "b"]) == ["a", "b", "c"]
+    assert dedupe(["a", "b", "a", "c", "b"]) == ["a", "b", "c"]
 
 
 def test_deduce_no_duplicates():
     """Tests that deduce leaves a list without duplicates unchanged."""
-    assert deduce(["x", "y", "z"]) == ["x", "y", "z"]
+    assert dedupe(["x", "y", "z"]) == ["x", "y", "z"]
 
 
 def test_deduce_empty_list():
     """Tests that an empty list safely returns an empty list."""
-    assert deduce([]) == []
+    assert dedupe([]) == []
 
 
 def test_group_by_happy_path():
@@ -73,7 +73,7 @@ def test_frequencies_invalid_type():
 def test_deduce_unhashable_type():
     """Tests that deduce raises a TypeError for unhashable types (like lists of lists)."""
     with pytest.raises(TypeError):
-        deduce([["apple"], ["banana"]])
+        dedupe([["apple"], ["banana"]])
 
 
 def test_group_by_invalid_data_type():

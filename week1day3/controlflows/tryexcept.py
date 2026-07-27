@@ -34,21 +34,18 @@ def calculatingaverage(numbers_list):
         print("executionfinished")
 
 
-
 if __name__ == "__main__":
-    
+
     print("--- Test 1: Valid Data ---")
     valid_data = [10, 20, 30, 40]
     calculatingaverage(valid_data)
     print()
 
-    
     print("--- Test 2: Empty List ---")
     empty_data = []
     calculatingaverage(empty_data)
     print()
 
-    
     print("--- Test 3: Invalid Data Types ---")
     bad_data = [10, 20, "thirty"]
     calculatingaverage(bad_data)
