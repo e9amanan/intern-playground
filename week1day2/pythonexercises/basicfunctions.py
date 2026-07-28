@@ -27,5 +27,3 @@ def calculate_stats_numpy(*numbers: float) -> dict[str, float]:
         "mean": float(np.mean(arr)),
         "median": float(np.median(arr)),
     }
-
-

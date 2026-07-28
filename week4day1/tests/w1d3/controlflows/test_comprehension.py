@@ -1,4 +1,5 @@
-from week1day3.controlflows.comprehension import valid_prices, clean_header, unique_tags
+from week1day3.controlflows.comprehension import clean_header, unique_tags, valid_prices
+
 
 def test_comprehension_results():
     """Test that the comprehensions accurately filtered and transformed the data."""

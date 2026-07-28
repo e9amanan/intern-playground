@@ -1,9 +1,11 @@
 import pytest
 
+
 @pytest.fixture
 def sample_string_list():
     """Provides a list with duplicates for frequency and dedupe testing."""
     return ["apple", "banana", "apple", "orange", "banana", "apple"]
+
 
 @pytest.fixture
 def sample_dict_list():
@@ -11,8 +13,9 @@ def sample_dict_list():
     return [
         {"id": 1, "status": "todo", "task": "Write tests"},
         {"id": 2, "status": "done", "task": "Learn pytest"},
-        {"id": 3, "status": "todo", "task": "Mocking"}
+        {"id": 3, "status": "todo", "task": "Mocking"},
     ]
+
 
 @pytest.fixture
 def sample_number_dict():
