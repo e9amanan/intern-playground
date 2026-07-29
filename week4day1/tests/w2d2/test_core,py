@@ -1,0 +1,62 @@
+import pytest
+from datetime import datetime
+from week2day2.insights_energy.core import (
+    clean_data, 
+    display_daily_averages, 
+    display_top_spikes, 
+    display_anomalies
+)
+from week2day2.insights_energy.exceptions import ValidationError
+
+@pytest.fixture
+def sample_raw_rows():
+    return [
+        {"timestamp": "2023-01-01T10:00:00Z", "price": "50.0"},
+        {"timestamp": "2023-01-01T11:00:00Z", "price": "100.0"},
+        {"timestamp": "2023-01-02T10:00:00Z", "price": "invalid"},  # Should be skipped
+    ]
+
+@pytest.fixture
+def sample_cleaned_data(sample_raw_rows):
+    return clean_data(sample_raw_rows[:2], "price")
+
+def test_clean_data(sample_raw_rows):
+    # Only the first two rows are valid
+    data = clean_data(sample_raw_rows, "price")
+    
+    assert len(data) == 2
+    assert isinstance(data[0]["timestamp"], datetime)
+    assert data[0]["value"] == 50.0
+    assert data[0]["raw_ts"] == "2023-01-01T10:00:00Z"
+
+def test_clean_data_empty():
+    with pytest.raises(ValidationError, match="No valid data rows found"):
+        clean_data([], "price")
+
+def test_display_daily_averages(sample_cleaned_data, capsys):
+    display_daily_averages(sample_cleaned_data)
+    captured = capsys.readouterr()
+    
+    
+    assert "23-01-01" in captured.out
+    assert "$75.00" in captured.out
+
+def test_display_top_spikes(sample_cleaned_data, capsys):
+    display_top_spikes(sample_cleaned_data, 1)
+    captured = capsys.readouterr()
+    
+    # 100.0 is the top spike
+    assert "2023-01-01T11:00:00Z" in captured.out
+    assert "$100.00" in captured.out
+
+def test_display_anomalies_not_enough_data(capsys):
+    display_anomalies([{"value": 10.0}])
+    captured = capsys.readouterr()
+    assert "Not enough data" in captured.out
+
+def test_display_anomalies_detected(capsys):
+    # Create an artificial dataset where one value sits > 2 standard deviations away
+    data = [{"value": 10.0}] * 10 + [{"value": 1000.0}]
+    display_anomalies(data)
+    captured = capsys.readouterr()
+    assert "Anomalies detected: 1" in captured.out
