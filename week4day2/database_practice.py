@@ -1,7 +1,7 @@
 import sqlite3
 import datetime
 
-# 1. Schema Definition (Create tables with constraints and indexes)
+# 1. Schema Definition 
 def setup_database(db_name='tasks.db'):
     with sqlite3.connect(db_name) as conn:
         cursor = conn.cursor()
@@ -47,9 +47,9 @@ def setup_database(db_name='tasks.db'):
 def add_task_with_categories(db_name, title, desc, status, category_names):
     """Example of a transaction handling multiple inserts"""
     try:
-        # Context manager handles commit/rollback automatically
+        
         with sqlite3.connect(db_name) as conn:
-            # Enable foreign key support in SQLite (off by default)
+           
             conn.execute("PRAGMA foreign_keys = ON")
             cursor = conn.cursor()
             
@@ -63,14 +63,14 @@ def add_task_with_categories(db_name, title, desc, status, category_names):
             
             # Handle Categories
             for cat_name in category_names:
-                # Insert category if it doesn't exist, ignore if it does
+                # Insert category if it doesn't exist
                 cursor.execute('INSERT OR IGNORE INTO categories (name) VALUES (?)', (cat_name,))
                 
-                # Fetch the category ID (whether just inserted or already existed)
+                # Fetch the category ID 
                 cursor.execute('SELECT id FROM categories WHERE name = ?', (cat_name,))
                 cat_id = cursor.fetchone()[0]
                 
-                # Link task and category
+               
                 cursor.execute('''
                     INSERT INTO tasks_categories (task_id, category_id) 
                     VALUES (?, ?)
