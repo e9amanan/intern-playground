@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+<!-- We MUST load this to use our custom badges and recent tasks -->
+{% load task_extras %} 
+
+{% block title %}All Tasks - Task App{% endblock %}
+
+{% block content %}
+    <h2>My Task List</h2>
+    <hr>
+    
+    <!-- Custom Tag Section (Proves Task 6 and Problem 2) -->
+    <section style="background: #f9f9f9; padding: 15px; margin-bottom: 20px;">
+        <h3>Recent Global Tasks</h3>
+        {% get_recent_tasks 3 as recent_tasks %}
+        <ul>
+            {% for recent in recent_tasks %}
+                <li style="margin-bottom: 10px;">
+                    {{ recent.title }} - {% render_priority_badge recent.priority %}
+                </li>
+            {% empty %}
+                <li>No recent tasks found.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <hr>
+
+    <!-- Main Task Loop (Proves Task 3, 4, and 5) -->
+    <h3>Your Assigned Tasks</h3>
+    {% for task in tasks %}
+        <div style="margin-bottom: 20px;">
+            
+            <!-- Custom Filter: status_badge applied to a CSS class -->
+            <span class="badge {{ task.status|status_badge }}" style="font-weight: bold; margin-bottom: 5px; display: inline-block;">
+                Status: {{ task.status }}
+            </span>
+            
+            <!-- Using our partial and passing custom variables into it -->
+            {% include "partials/_task_card.html" with task=task card_border="blue" %}
+            
+        </div>
+    {% empty %}
+        <p>You have no tasks assigned right now!</p>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "dashboard_base.html" %}
+
+{% block title %}Analytics - Dashboard{% endblock %}
+
+{% block dashboard_content %}
+    <h2>Task Analytics</h2>
+    <p>Welcome to your analytics dashboard.</p>
+    
+    <div style="background: #f4f4f4; padding: 15px; border-radius: 5px; margin-top: 15px;">
+        <p>Total Completed Tasks: <strong>42</strong></p>
+        <!-- Using our global context processor here too! -->
+        <p>Total Pending Tasks: <strong style="color: red;">{{ GLOBAL_PENDING_COUNT }}</strong></p>
+    </div>
+{% endblock %}

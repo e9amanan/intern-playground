@@ -1,14 +1,15 @@
 from django.db import models
-from django.urls import reverse
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.views.generic import (
-    ListView,
-    DetailView,
     CreateView,
-    UpdateView,
     DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
 )
+
 from .models import Task
+
 
 class Task(models.Model):
     title = models.CharField(max_length=200)
@@ -23,5 +24,3 @@ class Task(models.Model):
     def get_absolute_url(self):
         # Generates URL using our 'todo' namespace
         return reverse("todo:task-detail", kwargs={"slug": self.slug})
-
-

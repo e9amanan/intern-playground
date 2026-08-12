@@ -25,7 +25,7 @@ def test_end_to_end_happy_path(tmp_path, csv_file, monkeypatch):
         row = conn.execute(
             "SELECT title, category_count, is_overdue FROM tasks"
         ).fetchone()
-    assert row == ("Setup Django", 2, 1)  
+    assert row == ("Setup Django", 2, 1)
 
     with open(json_path) as f:
         data = json.load(f)
@@ -48,7 +48,7 @@ def test_no_valid_rows_exits_without_touching_db(
     assert "No valid data to load" in captured.out
     import os
 
-    assert not os.path.exists(db_path)  
+    assert not os.path.exists(db_path)
 
 
 def test_load_failure_is_caught_and_reported(tmp_path, csv_file, monkeypatch, capsys):

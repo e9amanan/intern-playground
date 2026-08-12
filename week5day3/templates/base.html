@@ -6,28 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Task App{% endblock %}</title>
     
-    <!-- Global CSS -->
+    <!-- Task 1: Static file loading -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     
-    <!-- Cutout for page-specific CSS -->
     {% block extra_css %}{% endblock %}
 </head>
 <body>
 
     <header>
+        <!-- Task 4: Including a partial -->
         {% include "partials/_navbar.html" %}
     </header>
 
-    <main class="container">
-        <!-- Main content cutout -->
+    <main class="container" style="padding: 20px;">
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
+    <footer style="text-align: center; margin-top: 50px; font-size: 0.8rem;">
         <p>&copy; 2026 Task Manager Inc.</p>
     </footer>
 
-    <!-- Cutout for page-specific JS -->
     {% block extra_js %}{% endblock %}
 </body>
 </html>

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "todo",
 ]
 
 MIDDLEWARE = [
@@ -59,9 +60,11 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
+                "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "todo.context_processors.global_task_stats",
             ],
         },
     },
@@ -129,8 +132,8 @@ MAILERS = {
 
 # Directories where Django looks for static files during development
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    BASE_DIR / "static",
 ]
 
 # Directory where static files will be collected for production deployment
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / "staticfiles"

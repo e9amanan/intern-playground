@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """
 Demonstration of Graceful Error Handling and Exit Codes.
@@ -22,7 +21,8 @@ def build_parser() -> argparse.ArgumentParser:
     """Creates a simple parser to test error handling."""
     parser = argparse.ArgumentParser(description="Error Handling Demo CLI")
     parser.add_argument(
-        "-v", "--verbose",
+        "-v",
+        "--verbose",
         action="store_true",
         help="Print full traceback on error instead of short message.",
     )

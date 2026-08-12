@@ -1,0 +1,8 @@
+<nav class="navbar" style="background: #333; color: white; padding: 1rem;">
+    <a href="/" style="color: white; font-weight: bold;">TaskManager</a>
+    
+    <!-- Utilizing the global context processor variable here -->
+    <span style="float: right;">
+        Pending Tasks: <strong style="color: yellow;">{{ GLOBAL_PENDING_COUNT }}</strong>
+    </span>
+</nav>

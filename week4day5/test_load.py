@@ -8,7 +8,6 @@ import json
 import sqlite3
 
 import pytest
-
 from pipeline import load_to_json, load_to_sqlite
 
 
@@ -52,13 +51,13 @@ def test_shared_category_is_not_duplicated(empty_db):
     this is the N+1 bug the optimization fixes: without the id cache the
     original code would still work correctly here, but would issue a
     redundant SELECT for 'Cat0' on the second task instead of reusing it."""
-    tasks = _tasks([1, 1])  
+    tasks = _tasks([1, 1])
     load_to_sqlite(tasks, empty_db)
     with sqlite3.connect(empty_db) as conn:
         cats = conn.execute("SELECT name FROM categories").fetchall()
         junctions = conn.execute("SELECT * FROM tasks_categories").fetchall()
     assert cats == [("Cat0",)]
-    assert len(junctions) == 2  
+    assert len(junctions) == 2
 
 
 def test_empty_task_list_is_a_noop(empty_db):

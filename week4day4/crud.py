@@ -1,7 +1,9 @@
 """
 Module 4: Complete REST CRUD Operations & JSON Wire Serialization
 """
+
 import json
+
 import requests
 
 API_ROOT = "https://jsonplaceholder.typicode.com"
@@ -17,7 +19,7 @@ post_data = get_response.json()
 print(f"[READ - GET] Title: {post_data.get('title')[:30]}...")
 
 
-# HTTP POST 
+# HTTP POST
 
 new_resource_dict = {
     "title": "HTTP & REST Architecture",
@@ -31,11 +33,13 @@ json_wire_payload = json.dumps(new_resource_dict)
 post_response = requests.post(
     f"{API_ROOT}/posts",
     headers=headers,
-    data=json_wire_payload, 
+    data=json_wire_payload,
     timeout=5.0,
 )
 created_resource = post_response.json()
-print(f"[CREATE - POST] Status: {post_response.status_code} | Assigned ID: {created_resource.get('id')}")
+print(
+    f"[CREATE - POST] Status: {post_response.status_code} | Assigned ID: {created_resource.get('id')}"
+)
 
 # HTTP PUT
 
@@ -48,13 +52,15 @@ put_payload = {
 put_response = requests.put(
     f"{API_ROOT}/posts/1",
     headers=headers,
-    json=put_payload, 
+    json=put_payload,
     timeout=5.0,
 )
-print(f"[REPLACE - PUT] Status: {put_response.status_code} | New Title: {put_response.json().get('title')}")
+print(
+    f"[REPLACE - PUT] Status: {put_response.status_code} | New Title: {put_response.json().get('title')}"
+)
 
 
-# HTTP PATCH 
+# HTTP PATCH
 
 patch_payload = {"title": "Only Title Was Updated Via Patch"}
 patch_response = requests.patch(
@@ -63,10 +69,14 @@ patch_response = requests.patch(
     json=patch_payload,
     timeout=5.0,
 )
-print(f"[MODIFY - PATCH] Status: {patch_response.status_code} | Patched Title: {patch_response.json().get('title')}")
+print(
+    f"[MODIFY - PATCH] Status: {patch_response.status_code} | Patched Title: {patch_response.json().get('title')}"
+)
 
 
 # HTTP DELETE
 
 delete_response = requests.delete(f"{API_ROOT}/posts/1", headers=headers, timeout=5.0)
-print(f"[DELETE - DELETE] Status: {delete_response.status_code} | Response Empty? {delete_response.text == '{}'}")
+print(
+    f"[DELETE - DELETE] Status: {delete_response.status_code} | Response Empty? {delete_response.text == '{}'}"
+)

@@ -7,15 +7,11 @@ log_group = parser.add_mutually_exclusive_group(required=False)
 
 
 log_group.add_argument(
-    "-v", "--verbose",
-    action="store_true",
-    help="Enable detailed debug logging."
+    "-v", "--verbose", action="store_true", help="Enable detailed debug logging."
 )
 
 log_group.add_argument(
-    "-q", "--quiet",
-    action="store_true",
-    help="Suppress all standard console output."
+    "-q", "--quiet", action="store_true", help="Suppress all standard console output."
 )
 
 args = parser.parse_args()

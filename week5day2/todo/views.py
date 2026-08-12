@@ -1,17 +1,16 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Task
-from django.http import HttpResponse
-from django.shortcuts import redirect
 from django.db import models
-from django.urls import reverse
-from django.urls import reverse_lazy
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
 from django.views.generic import (
-    ListView,
-    DetailView,
     CreateView,
-    UpdateView,
     DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
 )
+
+from .models import Task
 
 
 def task_list_fbv(request):
@@ -20,12 +19,12 @@ def task_list_fbv(request):
     """
     # 1. Fetch all tasks from the database, newest first
     tasks = Task.objects.all().order_by("-created_at")
-    
+
     # 2. Package the data into a dictionary called 'context'
     context = {
         "tasks": tasks,
     }
-    
+
     # 3. Combine the request, HTML template, and context data into an HttpResponse
     return render(request, "todo/task_list.html", context)
 
@@ -36,14 +35,15 @@ def task_detail_fbv(request, slug):
     """
     # 1. Safely query for the task matching this slug, or return 404 Not Found
     task = get_object_or_404(Task, slug=slug)
-    
+
     # 2. Package into context
     context = {
         "task": task,
     }
-    
+
     # 3. Render and return response
     return render(request, "todo/task_detail.html", context)
+
 
 def ping_fbv(request):
     """
@@ -51,19 +51,21 @@ def ping_fbv(request):
     """
     return HttpResponse("<h1>Server Status: OK</h1><p>No template file needed!</p>")
 
+
 def complete_task_fbv(request, slug):
     """
     Demonstrates modifying data and using redirect() to send the user elsewhere.
     """
     # 1. Find the task
     task = get_object_or_404(Task, slug=slug)
-    
+
     # 2. Mark it as complete and save to the database
     task.completed = True
     task.save()
-    
+
     # 3. Redirect the browser back to the task detail page
     return redirect("todo:task-detail", slug=task.slug)
+
 
 # 1. LIST VIEW (with Pagination & Method Overrides)
 class TaskListView(ListView):

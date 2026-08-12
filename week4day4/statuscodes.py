@@ -1,7 +1,9 @@
 """
 Module 2: HTTP Methods & Programmatic Status Code Class Handlers
 """
+
 from typing import Any, Dict, Optional
+
 import requests
 
 
@@ -33,7 +35,7 @@ def execute_and_categorize(
             print(f"[3xx REDIRECT - {code}] {method:<6} {url}")
             print(f"  -> Server instructed redirect to: {destination}")
 
-        # CLIENT ERROR 
+        # CLIENT ERROR
         elif 400 <= code < 500:
             print(f"[4xx CLIENT ERROR - {code}] {method:<6} {url}")
             if code == 400:
@@ -41,7 +43,9 @@ def execute_and_categorize(
             elif code == 401:
                 print("  -> 401 Unauthorized: Identity unverified (missing auth).")
             elif code == 403:
-                print("  -> 403 Forbidden: Identity known, but lacking ACL permissions.")
+                print(
+                    "  -> 403 Forbidden: Identity known, but lacking ACL permissions."
+                )
             elif code == 404:
                 print("  -> 404 Not Found: Target resource URI does not exist.")
             elif code == 429:
@@ -55,7 +59,6 @@ def execute_and_categorize(
 
     except requests.exceptions.RequestException as err:
         print(f"[NETWORK FAILURE] Socket/DNS error connecting to {url}: {err}")
-
 
 
 execute_and_categorize("GET", "https://httpbin.org/status/200")

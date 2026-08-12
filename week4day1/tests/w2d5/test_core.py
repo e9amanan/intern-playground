@@ -1,11 +1,13 @@
-import pytest
 from datetime import datetime
+
+import pytest
+
 from week2day5.yourpkg.core import (
     _parse_row,
     clean_data,
+    display_anomalies,
     display_daily_averages,
     display_top_spikes,
-    display_anomalies,
 )
 from week2day5.yourpkg.exception import ValidationError
 
@@ -27,6 +29,7 @@ def sample_cleaned_data(sample_raw_data):
 
 # --- Testing _parse_row ---
 
+
 def test_parse_row_success():
     row = {"timestamp": "2023-10-01T10:00:00Z", "price": "100.0"}
     result = _parse_row(row, "price", 2)
@@ -37,13 +40,14 @@ def test_parse_row_success():
 def test_parse_row_invalid_data(capsys):
     row = {"timestamp": "2023-10-01T10:00:00Z", "price": "invalid"}
     result = _parse_row(row, "price", 3)
-    
+
     assert result is None
     captured = capsys.readouterr()
     assert "Warning: Skipping invalid row 3" in captured.out
 
 
 # --- Testing clean_data ---
+
 
 def test_clean_data_success(sample_raw_data):
     data = clean_data(sample_raw_data, "price")
@@ -63,6 +67,7 @@ def test_clean_data_all_invalid():
 
 # --- Testing display functions ---
 
+
 def test_display_daily_averages(sample_cleaned_data, capsys):
     display_daily_averages(sample_cleaned_data)
     captured = capsys.readouterr()
@@ -77,10 +82,13 @@ def test_display_top_spikes(sample_cleaned_data, capsys):
     assert "$150.00" in captured.out
 
 
-@pytest.mark.parametrize("mock_values, expected_output", [
-    ([10.0], "Not enough data to calculate standard deviation"), 
-    ([10.0, 10.0], "Anomalies detected: 0 as no variance"),
-])
+@pytest.mark.parametrize(
+    "mock_values, expected_output",
+    [
+        ([10.0], "Not enough data to calculate standard deviation"),
+        ([10.0, 10.0], "Anomalies detected: 0 as no variance"),
+    ],
+)
 def test_display_anomalies_edge_cases(mock_values, expected_output, capsys):
     data = [{"value": v} for v in mock_values]
     display_anomalies(data)

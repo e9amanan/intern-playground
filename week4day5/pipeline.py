@@ -9,9 +9,7 @@ from week4day2.validators import DataValidator
 
 
 def enrich_task(task: dict, now: datetime = None) -> dict:
-    """TRANSFORM: add category_count and is_overdue to a validated task dict.
-
-    """
+    """TRANSFORM: add category_count and is_overdue to a validated task dict."""
     now = now or datetime.now()
     task["category_count"] = len(task["categories"])
     due = task.pop("due_date_parsed", None)
@@ -20,9 +18,7 @@ def enrich_task(task: dict, now: datetime = None) -> dict:
 
 
 def load_to_sqlite(clean_data: list[dict], db_name: str) -> None:
-    """LOAD (DB half): insert tasks + categories + junction rows.
-
-    """
+    """LOAD (DB half): insert tasks + categories + junction rows."""
     with sqlite3.connect(db_name) as conn:
         conn.execute("PRAGMA foreign_keys = ON")
         cursor = conn.cursor()
@@ -114,7 +110,7 @@ def etl_pipeline(
     try:
         load_to_sqlite(clean_data, db_name)
         print("Successfully loaded data into SQLite database.")
-    except Exception as e:  
+    except Exception as e:
         print(f"CRITICAL ERROR during LOAD: {e}")
         print("Entire database transaction has been rolled back.")
 

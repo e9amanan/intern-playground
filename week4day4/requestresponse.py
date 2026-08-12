@@ -25,7 +25,7 @@ print("Headers Sent   :")
 for header_name, header_val in wire_req.headers.items():
     print(f"  {header_name:<16}: {header_val}")
 
-# Inspect the incoming HTTP 
+# Inspect the incoming HTTP
 print("\n=== INCOMING HTTP RESPONSE ===")
 print(f"Status Code    : {response.status_code} ({response.reason})")
 print(f"Round-Trip Time: {response.elapsed.total_seconds():.3f} seconds")

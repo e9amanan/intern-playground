@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-wrapper" style="display: flex;">
+    <!-- Dashboard Sidebar -->
+    <aside class="sidebar" style="width: 250px; border-right: 1px solid #ccc; padding-right: 10px;">
+        <h3>Menu</h3>
+        <ul>
+            <li><a href="#">Tasks</a></li>
+            <li><a href="#">Analytics</a></li>
+        </ul>
+    </aside>
+    
+    <!-- Dashboard Main Content area -->
+    <section class="dashboard-body" style="flex-grow: 1; padding-left: 20px;">
+        {% block dashboard_content %}{% endblock %}
+    </section>
+</div>
+{% endblock %}

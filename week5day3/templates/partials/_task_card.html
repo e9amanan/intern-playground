@@ -1,0 +1,6 @@
+<div class="task-card" style="border: 1px solid {{ card_border|default:'gray' }}; padding: 10px; margin: 10px 0;">
+    <h3>{{ task.title }}</h3>
+    <!-- Built-in filter: truncatechars -->
+    <p>{{ task.description|truncatechars:50 }}</p>
+    <small>Status: {{ task.status }}</small>
+</div>
