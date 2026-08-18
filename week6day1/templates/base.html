@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 20px;">
+
+    <!-- NAVIGATION BAR -->
+    <nav style="background: #eee; padding: 10px; margin-bottom: 20px;">
+        <a href="{% url 'task-list' %}">Home</a> | 
+        
+        <!-- LOGIC: Check if the user has a valid session cookie -->
+        {% if user.is_authenticated %}
+            <span>Hello, {{ user.username }}!</span> | 
+            
+            <!-- In Django, logout MUST be a form submission, not a link, for security reasons -->
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Log Out</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Log In</a> | 
+            <a href="{% url 'signup' %}">Sign Up</a>
+        {% endif %}
+    </nav>
+
+    <!-- CONTENT BLOCK: Other pages will inject their specific HTML right here -->
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

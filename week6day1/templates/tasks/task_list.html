@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>My Private Tasks</h2>
+    <a href="{% url 'task-create' %}"><button>+ New Task</button></a>
+    
+    <hr>
+
+    <ul>
+        <!-- LOOP: Go through every task we retrieved from the database -->
+        {% for task in tasks %}
+            <!-- The {{ task }} tag automatically uses the __str__ method we wrote! -->
+            <li>{{ task }}</li>
+        <!-- EMPTY: What to show if the user has 0 tasks -->
+        {% empty %}
+            <p>You have no tasks yet.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

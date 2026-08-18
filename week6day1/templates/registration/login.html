@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Log In</h2>
+    
+    <!-- method="post" ensures the password is sent securely, hidden from the URL bar -->
+    <form method="post">
+        <!-- A security token that prevents hackers from submitting forms on your behalf -->
+        {% csrf_token %}
+        
+        <!-- Renders the pre-built Django login form -->
+        {{ form.as_p }}
+        
+        <button type="submit">Log In</button>
+    </form>
+    
+    <p>Don't have an account? <a href="{% url 'signup' %}">Sign up here.</a></p>
+{% endblock %}
