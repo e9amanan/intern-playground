@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX Task Creation</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 40px;">
+
+    <h2>Create Task (No Page Reload)</h2>
+    
+    <div id="resultMessage" style="margin-bottom: 20px; font-weight: bold;"></div>
+
+    <form id="ajaxTaskForm" method="POST" action="{% url 'ajax_task_create' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Task</button>
+    </form>
+
+    <script>
+        document.getElementById('ajaxTaskForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            let form = this;
+            let formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                let resultDiv = document.getElementById('resultMessage');
+                if (data.success) {
+                    resultDiv.innerHTML = `<span style="color: green;">${data.message}</span>`;
+                    form.reset(); 
+                } else {
+                    let errorText = "Errors: " + JSON.stringify(data.errors);
+                    resultDiv.innerHTML = `<span style="color: red;">${errorText}</span>`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

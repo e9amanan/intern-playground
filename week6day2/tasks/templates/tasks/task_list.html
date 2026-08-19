@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task List</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 40px;">
+    <h2>All Tasks</h2>
+    
+    <!-- Success messages from redirects will show here -->
+    {% if messages %}
+        <ul style="color: green;">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <strong>{{ task.title }}</strong> - {{ task.status }} 
+                (Starts: {{ task.start_date|default:"None" }} | Due: {{ task.due_date|default:"None" }})
+            </li>
+        {% empty %}
+            <li>No tasks created yet.</li>
+        {% endfor %}
+    </ul>
+
+    <br>
+    <a href="{% url 'batch_task_create' %}">Create Batch Tasks</a> | 
+    <a href="{% url 'ajax_task_create' %}">Create Task via AJAX</a>
+</body>
+</html>
