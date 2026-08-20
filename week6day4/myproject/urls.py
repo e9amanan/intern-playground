@@ -1,5 +1,5 @@
 """
-URL configuration for config project.
+URL configuration for myproject project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.1/topics/http/urls/
@@ -16,13 +16,9 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path,include
 
 urlpatterns = [
-    # Traffic to /admin/ goes to the built-in admin panel
     path("admin/", admin.site.urls),
-    # Traffic to /accounts/ goes to Django's built-in auth system (login, logout, etc.)
-    path("accounts/", include("django.contrib.auth.urls")),
-    # ALL other traffic goes to your custom 'tasks' app URLs
-    path("", include("tasks.urls")),
+    path('api-auth/', include('rest_framework.urls')),
 ]
